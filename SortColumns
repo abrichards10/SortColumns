@@ -1,0 +1,81 @@
+// import necessary packages to use the list
+import java.util.ArrayList;
+import java.util.List;
+
+// Angela Richards
+// Delete Columns to Sort
+
+/*
+    Choose a set of deletion indices -->
+    delete all char in those indices
+ */
+
+public class SortColumns{
+
+    public List <Integer> minDeletionSize(String [] A){
+        // ArrayList of integers
+        List <Integer> myList = new ArrayList <Integer> ();
+
+        boolean loop = true;
+
+        // if the character is less than the length of the element at A[0]
+        for(int i = 0; i < A[0].length(); i++){
+
+            if(loop){
+                // going through the first word to the rest of the words
+                for(int j = 0; j < A.length-1; j++){
+                    // as long as the words are the same length
+                    if(A[j].length() == A[j+1].length()){
+                        // check if the words are in NON-DECREASING sorted order
+                        // if a later character comes before the previous character (if b comes before a):
+                        // add it to the list of indices
+                        if(A[j].charAt(i) > A[j+1].charAt(i)){
+                            myList.add(i);
+                            break;
+                        }
+                    }
+                    // if the length of the words are not the same, we don't loop
+                    // BEST CASE
+                    else{
+                        loop = false;
+                    }
+                }
+            }
+            else{
+                // if the words are not the same length
+                // return -1
+                // BASE CASE = O(n)
+                myList.add(-1);
+                break;
+            }
+        }
+        // return the list of indices
+        return myList;
+    }
+
+    public static void main(String [] args){
+
+        // Three String tests from Lab examples
+        String [] alphabet = new String[]{"a", "b"};
+        String [] characters = new String[]{"zyx","wvu","tsr"};
+        String [] marvel_characters = new String[]{"Captain", "Marvel", "saved", "the", "Avengers"};
+
+        // 3 new Labs created
+        SortColumns columnSort = new SortColumns();
+        SortColumns columnSort1 = new SortColumns();
+        SortColumns columnSort2 = new SortColumns();
+
+        // test each list with the module
+        List<Integer> test = columnSort.minDeletionSize(alphabet);
+        List<Integer> test1 = columnSort1.minDeletionSize(characters);
+        List<Integer> test2 = columnSort2.minDeletionSize(marvel_characters);
+
+        // Print indices of each
+        System.out.print("First test result: ");
+        System.out.println(test.toString());
+        System.out.print("Second test result: ");
+        System.out.println(test1.toString());
+        System.out.print("Third test result: ");
+        System.out.println(test2.toString());
+    }
+}
