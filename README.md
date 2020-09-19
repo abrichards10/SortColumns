@@ -5,7 +5,7 @@ Runtime:
 - The first for loop checks the length of the string (s) --> it loops through the word
 - The second for loop goes through the length of the array itself (n) --> it loops through the array
 
-Therefore runtime is equal to the time it takes to loop through all the strings multiplied by the length of the array: n * m 
+Therefore runtime is equal to the time it takes to loop through all the strings multiplied by the length of the array: n * s 
 
 Runtime = O(n * s)
 
